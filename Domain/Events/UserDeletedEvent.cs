@@ -6,7 +6,9 @@ namespace Domain.Events
 {
     public class UserDeletedEvent : IEvent
     {
-        public Guid UserId { get; }
+        public Guid UserId { get; private set; }
+
+        private UserDeletedEvent() { }
 
         private UserDeletedEvent(Guid userId)
         {

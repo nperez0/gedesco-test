@@ -8,11 +8,13 @@ namespace Domain.Events
 {
     public class UserUpdatedEvent : IEvent
     {
-        public Guid UserId { get; }
+        public Guid UserId { get; private set; }
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
-        public IReadOnlyCollection<Address> Addresses { get; }
+        public IReadOnlyCollection<Address> Addresses { get; private set; }
+
+        private UserUpdatedEvent() { }
 
         private UserUpdatedEvent(Guid userId, string name, IReadOnlyCollection<Address> addresses)
         {

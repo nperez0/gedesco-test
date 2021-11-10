@@ -13,7 +13,10 @@ namespace Core.Extensions
         {
             var entity = await repository.Find(id, cancellationToken);
 
-            return entity ?? throw new InvalidOperationException($"Failed to locate {typeof(T).Name} with id {id}.");
+            if (entity == null || entity.Id == Guid.Empty)
+                throw new InvalidOperationException($"Failed to locate {typeof(T).Name} with id {id}.");
+
+            return entity;
         }
 
         public static async Task<Unit> GetAndUpdate<T>(this IAggregateRepository<T> repository, Guid id, Action<T> action, CancellationToken cancellationToken = default) where T : IAggregate

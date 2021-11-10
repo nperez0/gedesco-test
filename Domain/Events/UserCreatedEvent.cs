@@ -8,16 +8,17 @@ namespace Domain.Events
 {
     public class UserCreatedEvent : IEvent
     {
-        public Guid UserId { get; }
+        public Guid UserId { get; private set; }
 
-        public string Username { get; }
+        public string Username { get; private set; }
 
-        public string Password { get; }
+        public string Password { get; private set; }
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
-        public IReadOnlyCollection<Address> Addresses { get; }
+        public IReadOnlyCollection<Address> Addresses { get; private set; }
 
+        private UserCreatedEvent() { }
         private UserCreatedEvent(Guid userId, string username, string password, string name, IReadOnlyCollection<Address> addresses)
         {
             UserId = userId;

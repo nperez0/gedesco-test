@@ -5,15 +5,17 @@ namespace Domain.Aggregates.Users
 {
     public class Address
     {
-        public Guid AddressId { get; }
+        public Guid AddressId { get; private set; }
 
-        public string Street { get; }
+        public string Street { get; private set; }
 
-        public string ZipCode { get; }
+        public string ZipCode { get; private set; }
 
-        public string City { get; }
+        public string City { get; private set; }
 
-        public string Country { get; }
+        public string Country { get; private set; }
+
+        private Address() { }
 
         private Address(Guid addressId, string street, string zipCode, string city, string country)
         {

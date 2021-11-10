@@ -25,9 +25,7 @@ namespace Domain.Aggregates.Users
                 name,
                 addresses);
 
-        private User(Guid id) {
-            Id = id;
-        }
+        private User() { }
 
         private User(Guid id, string username, string password, string name, IReadOnlyCollection<Address> addresses)
         {

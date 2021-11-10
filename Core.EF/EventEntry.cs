@@ -1,4 +1,5 @@
-﻿using Core.Events;
+﻿using Core.EF.Utilities;
+using Core.Events;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -39,9 +40,12 @@ namespace Core.EF
 
         public IEvent Deserialize()
         {
-            var type = Type.GetType(EventTypeName);
+            var type = Reflection.GetType(EventTypeName);
 
-            return JsonConvert.DeserializeObject(Content, type) as IEvent;
+            return JsonConvert.DeserializeObject(Content, type, new JsonSerializerSettings
+            {
+                ContractResolver = new PrivateResolver()
+            }) as IEvent;
         }
     }
 }
